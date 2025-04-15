@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help AI - Inteligência Artificial Acessível</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #34a853;
+            --dark-color: #202124;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .dark-mode {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+        }
+        
+        .dark-mode .card {
+            background-color: #303134;
+            color: var(--light-color);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #9c27b0 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .dark-mode .feature-icon {
+            color: #8ab4f8;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .dark-mode .btn-outline-primary {
+            color: #8ab4f8;
+            border-color: #8ab4f8;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .accessibility-bar {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 10px 0;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+        }
+
+        .nav-link {
+            color: var(--dark-color);
+        }
+
+        .dark-mode .nav-link {
+            color: var(--light-color);
+        }
+
+        .dark-mode .navbar {
+            background-color: #303134 !important;
+        }
+
+        #translator-demo {
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .dark-mode #translator-demo {
+            border-color: #8ab4f8;
+            background-color: #303134;
+        }
+
+        .video-container {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f1f3f4;
+            border-radius: 8px;
+        }
+
+        .dark-mode .video-container {
+            background-color: #3c4043;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -13px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--light-color);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--light-color);
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--light-color);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--light-color) transparent transparent;
+        }
+
+        .right::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .dark-mode .timeline-content {
+            background-color: #303134;
+        }
+
+        .dark-mode .timeline-container::after {
+            background-color: #303134;
+            border-color: #8ab4f8;
+        }
+
+        .dark-mode .left::before {
+            border-color: transparent transparent transparent #303134;
+        }
+
+        .dark-mode .right::before {
+            border-color: transparent #303134 transparent transparent;
+        }
+
+        .dark-mode .timeline::after {
+            background-color: #8ab4f8;
+        }
+
+        .project-card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Acessibilidade -->
+    <div class="accessibility-bar">
+        <div class="container d-flex justify-content-end">
+            <button id="darkModeToggle" class="btn btn-sm btn-outline-light me-2">
+                <i class="bi bi-moon-fill"></i> Modo Escuro
+            </button>
+            <button class="btn btn-sm btn-outline-light">
+                <i class="bi bi-type-larger"></i> Aumentar Fonte
+            </button>
+        </div>
+    </div>
+
+    <!-- Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <span style="color: var(--primary-color);">Help</span>AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#nossa-jornada">Nossa Jornada</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#funcionalidades">Funcionalidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tecnologias">Tecnologias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#impacto">Impacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seção Hero -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Help AI</h1>
+            <h2 class="h3 mb-4">Inteligência Artificial Acessível para Pessoas com Deficiência Auditiva</h2>
+            <p class="lead mb-5">Transformando a experiência digital através da inclusão e acessibilidade</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#demonstracao" class="btn btn-light btn-lg">Demonstração</a>
+                <a href="#sobre" class="btn btn-outline-light btn-lg">Saiba Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre o Projeto -->
+    <section id="sobre" class="section bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://help-all.netlify.app/assets/img/ImageObjective.png" alt="Ilustração representando acessibilidade digital" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="h1 mb-4">Por que criamos o Help AI?</h2>
+                    <p class="lead">Acreditamos que o acesso à informação é um direito de todos. O Help AI nasce com o propósito de aproximar pessoas com deficiência auditiva do universo digital.</p>
+                    
+                    <div class="mt-4">
+                        <h3 class="h5 text-danger mb-3">A realidade da acessibilidade digital no Brasil:</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-exclamation-triangle-fill text-danger me-2"></i> <strong>Menos de 3%</strong> da internet no Brasil é acessível (Valor Econômico, 2024)</li>
+                            <li class="mb-2"><i class="bi bi-exclamation-triangle-fill text-danger me-2"></i> <strong>99,54%</strong> dos sites analisados apresentam falhas de acessibilidade (HandTalk, 2024)</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="mt-4">O Help AI surge como resposta a essa realidade, com o objetivo de eliminar barreiras digitais e promover uma experiência mais inclusiva e compreensível.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa Jornada - NOVA SEÇÃO -->
+    <section id="nossa-jornada" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5">Nossa Jornada de Inclusão Digital</h2>
+            
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3 class="h4">2023</h3>
+                        <h4 class="h5 mb-3">Nascimento do Help All</h4>
+                        <p>Iniciamos nossa jornada com o Help All, nosso primeiro projeto voltado para a acessibilidade de deficientes auditivos. Uma plataforma pioneira de ensino e tradução de Libras.</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3 class="h4">2024</h3>
+                        <h4 class="h5 mb-3">Evolução e Aprendizado</h4>
+                        <p>Aprendemos com os usuários, coletamos feedback e identificamos oportunidades de melhoria. Percebemos o potencial transformador da IA para ampliar o impacto da solução.</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3 class="h4">2025</h3>
+                        <h4 class="h5 mb-3">Nasce o Help AI</h4>
+                        <p>Evoluímos para o Help AI, incorporando inteligência artificial e recursos avançados para criar uma experiência ainda mais completa e acessível para todos.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5 pt-4">
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 border-0 shadow project-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3 class="h4">Help All</h3>
+                                <span class="badge bg-secondary">2023</span>
+                            </div>
+                            <p>O Help All foi nosso projeto inicial, desenvolvido especialmente para a acessibilidade de deficientes auditivos e pessoas interessadas em aprender Libras. Uma plataforma educativa com foco na inclusão digital.</p>
+                            <h4 class="h6 mt-4 mb-3">Principais recursos:</h4>
+                            <ul>
+                                <li class="mb-2">Dicionário básico de Libras</li>
+                                <li class="mb-2">Tradutor de texto simples</li>
+                                <li class="mb-2">Material educativo para iniciantes</li>
+                                <li class="mb-2">Interface simplificada e intuitiva</li>
+                            </ul>
+                            <div class="text-center mt-4">
+                                <a href="https://help-all.netlify.app/" target="_blank" class="btn btn-outline-primary">Visitar o Help All</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 border-0 shadow project-card bg-primary text-white">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3 class="h4">Help AI</h3>
+                                <span class="badge bg-light text-dark">2025</span>
+                            </div>
+                            <p>O Help AI representa nossa evolução, incorporando inteligência artificial para ampliar o alcance e a eficiência da tradução e do aprendizado de Libras, com foco em uma experiência digital verdadeiramente inclusiva.</p>
+                            <h4 class="h6 mt-4 mb-3">Avanços tecnológicos:</h4>
+                            <ul>
+                                <li class="mb-2">Tradução avançada com IA</li>
+                                <li class="mb-2">Reconhecimento de padrões em vídeo</li>
+                                <li class="mb-2">Interpretação contextual de Libras</li>
+                                <li class="mb-2">Interface adaptativa e responsiva</li>
+                            </ul>
+                            <div class="text-center mt-4">
+                                <a href="#demonstracao" class="btn btn-light">Experimente o Help AI</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card border-0 shadow bg-light">
+                        <div class="card-body p-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <img src="/api/placeholder/400/300" alt="Screenshot do site Help All" class="img-fluid rounded">
+                                </div>
+                                <div class="col-md-8">
+                                    <h3 class="h4 mb-3">Conheça o Help All</h3>
+                                    <p>O Help All foi desenvolvido como uma solução web para auxiliar deficientes auditivos e entusiastas da Língua Brasileira de Sinais. Com uma interface intuitiva e focada na experiência do usuário, o projeto oferece recursos básicos de tradução e aprendizado.</p>
+                                    <p>Através do Help All, pudemos entender melhor as necessidades do nosso público e pavimentar o caminho para a criação do Help AI, nossa solução mais avançada com recursos de inteligência artificial.</p>
+                                    <div class="mt-3">
+                                        <a href="https://help-all.netlify.app/" target="_blank" class="btn btn-primary">
+                                            <i class="bi bi-box-arrow-up-right me-2"></i>Visitar o site Help All
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demonstração -->
+    <section id="demonstracao" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Experimente o Help AI</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div id="translator-demo">
+                        <div class="mb-3">
+                            <label for="inputText" class="form-label">Digite seu texto:</label>
+                            <textarea class="form-control" id="inputText" rows="3" placeholder="Digite aqui para traduzir para Libras..."></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button class="btn btn-primary" type="button">Traduzir para Libras</button>
+                        </div>
+                        <div class="video-container mt-4">
+                            <p>Aqui será exibida a tradução em Libras</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <small class="text-muted">Esta é uma demonstração simulada. O tradutor completo utiliza tecnologia VLibras.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funcionalidades -->
+    <section id="funcionalidades" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5">Funcionalidades do Help AI</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-translate feature-icon"></i>
+                            <h3 class="h5 card-title">Tradução para Libras</h3>
+                            <p class="card-text">Conversão instantânea de texto para a Língua Brasileira de Sinais.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-moon-stars feature-icon"></i>
+                            <h3 class="h5 card-title">Modo Escuro</h3>
+                            <p class="card-text">Interface adaptável para pessoas com sensibilidade à luz.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-display feature-icon"></i>
+                            <h3 class="h5 card-title">Design Responsivo</h3>
+                            <p class="card-text">Adaptação perfeita para desktop, tablets e smartphones.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-camera-video feature-icon"></i>
+                            <h3 class="h5 card-title">Vídeos em Libras</h3>
+                            <p class="card-text">Animações para termos reconhecidos pela plataforma.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Público-Alvo -->
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Para quem é o Help AI?</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3">
+                            <i class="bi bi-people-fill text-primary fs-1"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5">Pessoas com deficiência auditiva</h3>
+                            <p>Nosso principal público, para quem desenvolvemos uma interface específica que valoriza a comunicação visual.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3">
+                            <i class="bi bi-person-workspace text-primary fs-1"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5">Educadores e intérpretes de Libras</h3>
+                            <p>Profissionais que podem utilizar o Help AI como ferramenta de apoio no ensino e na interpretação.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3">
+                            <i class="bi bi-building text-primary fs-1"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5">ONGs e instituições de ensino</h3>
+                            <p>Organizações que buscam implementar soluções de acessibilidade em seus canais de comunicação.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3">
+                            <i class="bi bi-code-slash text-primary fs-1"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5">Desenvolvedores e pesquisadores</h3>
+                            <p>Profissionais de tecnologia interessados em contribuir com o ecossistema de acessibilidade digital.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tecnologias -->
+    <section id="tecnologias" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5">Como construímos o Help AI?</h2>
+            <div class="row justify-content-center text-center g-4">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="p-3">
+                        <i class="bi bi-filetype-html text-danger fs-1"></i>
+                        <h3 class="h6 mt-2">HTML5</h3>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="p-3">
+                        <i class="bi bi-filetype-css text-primary fs-1"></i>
+                        <h3 class="h6 mt-2">CSS3</h3>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="p-3">
+                        <i class="bi bi-filetype-js text-warning fs-1"></i>
+                        <h3 class="h6 mt-2">JavaScript</h3>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="p-3">
+                        <i class="bi bi-bootstrap text-purple fs-1"></i>
+                        <h3 class="h6 mt-2">Bootstrap 5</h3>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="p-3">
+                        <i class="bi bi-box-arrow-up-right text-success fs-1"></i>
+                        <h3 class="h6 mt-2">VLibras API</h3>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="p-3">
+                        <i class="bi bi-robot text-info fs-1"></i>
+                        <h3 class="h6 mt-2">IA (futuro)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impacto -->
+    <section id="impacto" class="section bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                    <img src="/api/placeholder/600/400" alt="Representação do impacto da acessibilidade digital" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <h2 class="h1 mb-4">O que queremos transformar</h2>
+                    <p class="lead mb-4">O Help AI busca criar um impacto duradouro na sociedade, promovendo a inclusão digital e contribuindo diretamente para a redução das desigualdades.</p>
+                    
+                    <div class="d-flex align-items-start mb-3">
+                        <i class="bi bi-check-circle-fill text-success fs-4 me-2 mt-1"></i>
+                        <p>Redução da exclusão digital entre deficientes auditivos</p>
+                    </div>
+                    <div class="d-flex align-items-start mb-3">
+                        <i class="bi bi-check-circle-fill text-success fs-4 me-2 mt-1"></i>
+                        <p>Fortalecimento de práticas inclusivas no desenvolvimento web</p>
+                    </div>
+                    <div class="d-flex align-items-start mb-3">
+                        <i class="bi bi-check-circle-fill text-success fs-4 me-2 mt-1"></i>
+                        <p>Inspiração para outros projetos sociais baseados em IA</p>
+                    </div>
+                    <div class="d-flex align-items-start">
+                        <i class="bi bi-check-circle-fill text-success fs-4 me-2 mt-1"></i>
+                        <p>Contribuição direta para o cumprimento da ODS 10 – Redução das Desigualdades da ONU</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Próximos Passos -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center mb-5">O que vem por aí?</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4">
+                            <div class="row">
+                                <div class="col-md-6 mb-4 mb-md-0">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                            <i class="bi bi-mic-fill"></i>
+                                        </div>
+                                        <h3 class="h5 mb-0">Reconhecimento de voz</h3>
+                                    </div>
+                                    <p>Implementação de IA para conversão de fala em Libras, permitindo comunicação bidirecional.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-primary text-white rounde
