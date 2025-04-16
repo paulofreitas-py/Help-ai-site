@@ -11,3 +11,11 @@ darkModeToggle.addEventListener('click', () => {
 increaseFontToggle.addEventListener('click', () => {
     document.body.classList.toggle('large-font');
 });
+
+// Inicializa o VLibras
+new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+// Inicializa o HandTalk
+const ht = new window.HT({
+    token: 'SEU_TOKEN_AQUI' // Substitua por seu token do HandTalk
+});

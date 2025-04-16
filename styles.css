@@ -172,4 +172,24 @@ footer {
     font-size: 1.2em !important;
 }
 
+/* Estilo para os ícones de acessibilidade */
+.navbar .btn {
+    background-color: transparent;
+    border: none;
+    color: var(--dark-color);
+    transition: color 0.3s ease;
+}
+
+.navbar .btn:hover {
+    color: var(--primary-color);
+}
+
+.dark-mode .navbar .btn {
+    color: var(--light-color);
+}
+
+.dark-mode .navbar .btn:hover {
+    color: #8ab4f8;
+}
+
 /* Adicione o restante do CSS aqui */
