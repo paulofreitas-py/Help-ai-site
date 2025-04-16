@@ -15,13 +15,11 @@
             <button id="darkModeToggle" class="btn btn-sm btn-outline-light me-2">
                 <i class="bi bi-moon-fill"></i> Modo Escuro
             </button>
-            <button class="btn btn-sm btn-outline-light">
+            <button id="increaseFontToggle" class="btn btn-sm btn-outline-light">
                 <i class="bi bi-type-larger"></i> Aumentar Fonte
             </button>
         </div>
     </div>
-
-    <!-- Navegação -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
@@ -434,4 +432,56 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="d-flex align-items-center mb-3">
-                                        <div class="bg-primary text-white rounde
+                                        <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                            <i class="bi bi-mic-fill"></i>
+                                        </div>
+                                        <h3 class="h5 mb-0">Reconhecimento de voz</h3>
+                                    </div>
+                                    <p>Implementação de IA para conversão de fala em Libras, permitindo comunicação bidirecional.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Entre em Contato</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="name" placeholder="Seu nome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Seu email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Mensagem</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="Sua mensagem"></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Help AI. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script> <!-- Conecte o arquivo JavaScript -->
+</body>
+</html>
