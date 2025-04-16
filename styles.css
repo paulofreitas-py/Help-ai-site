@@ -143,53 +143,55 @@ footer {
     margin: 0;
 }
 
-/* Modo escuro */
-.dark-mode {
-    background-color: var(--dark-color);
-    color: var(--light-color);
+/* Estilos da linha do tempo (Nossa Jornada) */
+.timeline {
+  position: relative;
+  margin: 50px 0;
 }
 
-.dark-mode .navbar {
-    background-color: #303134 !important;
+.timeline-bar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: var(--primary-color);
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
-.dark-mode .card {
-    background-color: #303134;
-    color: var(--light-color);
+.timeline-container {
+  position: relative;
+  width: 50%;
+  padding: 20px;
+  opacity: 0;
 }
 
-.dark-mode .btn-outline-light {
-    color: var(--light-color);
-    border-color: var(--light-color);
+.timeline-container.left {
+  left: 0;
 }
 
-/* Aumentar fonte */
-.large-font {
-    font-size: 1.2em;
+.timeline-container.right {
+  left: 50%;
 }
 
-.large-font h1, .large-font h2, .large-font h3, .large-font h4, .large-font h5, .large-font h6 {
-    font-size: 1.2em !important;
+.timeline-content {
+  position: relative;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 
-/* Estilo para os ícones de acessibilidade */
-.navbar .btn {
-    background-color: transparent;
-    border: none;
-    color: var(--dark-color);
-    transition: color 0.3s ease;
+.timeline-content h3 {
+  color: var(--primary-color);
 }
 
-.navbar .btn:hover {
-    color: var(--primary-color);
+.timeline-content h4 {
+  margin-bottom: 10px;
 }
 
-.dark-mode .navbar .btn {
-    color: var(--light-color);
+.timeline-content p {
+  margin: 0;
 }
-
-.dark-mode .navbar .btn:hover {
-    color: #8ab4f8;
-}
-
-/* Adicione o restante do CSS aqui */
