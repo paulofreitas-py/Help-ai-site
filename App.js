@@ -1,34 +1,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './App.css'; // Certifique-se de incluir os estilos necessários
-import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import Sobre from './components/Sobre';
-import NossaJornada from './components/NossaJornada';
-import Funcionalidades from './components/Funcionalidades';
-import Tecnologias from './components/Tecnologias';
-import Impacto from './components/Impacto';
-import Footer from './components/Footer';
+
+const timelineData = [
+  {
+    year: '2023',
+    title: 'Nascimento do Help All',
+    description: 'Iniciamos nossa jornada com o Help All, nosso primeiro projeto voltado para a acessibilidade de deficientes auditivos.',
+  },
+  {
+    year: '2024',
+    title: 'Evolução e Aprendizado',
+    description: 'Aprendemos com os usuários, coletamos feedback e identificamos oportunidades de melhoria.',
+  },
+  {
+    year: '2025',
+    title: 'Nasce o Help AI',
+    description: 'Evoluímos para o Help AI, incorporando inteligência artificial e recursos avançados.',
+  },
+];
 
 function App() {
-  const timelineData = [
-    {
-      year: '2023',
-      title: 'Nascimento do Help All',
-      description: 'Iniciamos nossa jornada com o Help All, nosso primeiro projeto voltado para a acessibilidade de deficientes auditivos. Uma plataforma pioneira de ensino e tradução de Libras.',
-    },
-    {
-      year: '2024',
-      title: 'Evolução e Aprendizado',
-      description: 'Aprendemos com os usuários, coletamos feedback e identificamos oportunidades de melhoria. Percebemos o potencial transformador da IA para ampliar o impacto da solução.',
-    },
-    {
-      year: '2025',
-      title: 'Nasce o Help AI',
-      description: 'Evoluímos para o Help AI, incorporando inteligência artificial e recursos avançados para criar uma experiência ainda mais completa e acessível para todos.',
-    },
-  ];
-
   return (
     <div>
       {/* Navbar */}
@@ -91,7 +83,7 @@ function App() {
         <div className="container">
           <h2 className="text-center mb-5">Nossa Jornada de Inclusão Digital</h2>
           <div className="timeline">
-            <div className="timeline-bar"></div> {/* Barra central */}
+            <div className="timeline-bar"></div>
             {timelineData.map((item, index) => (
               <motion.div
                 key={index}
