@@ -1,4 +1,4 @@
-# Help AI - Inteligência Artificial Acessível
+# ![Help AI Logo](https://github.com/paulofreitas-py/Help-ai-site/blob/main/img/logo.png?raw=true) Help AI - Inteligência Artificial Acessível
 
 ![Status](https://img.shields.io/badge/Status-Ativo-brightgreen)
 ![Acessibilidade](https://img.shields.io/badge/Acessibilidade-100%25-blue)
