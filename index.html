@@ -4,437 +4,832 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Help AI - Inteligência Artificial Acessível</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet"> <!-- Referência ao arquivo CSS externo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --primary-dark: #4338ca;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        
+        body.large-text {
+            font-size: 120%;
+        }
+        
+        body.large-text h1 {
+            font-size: 2.8rem;
+        }
+        
+        body.large-text h2 {
+            font-size: 2.2rem;
+        }
+        
+        body.large-text p, 
+        body.large-text li {
+            font-size: 1.2rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        
+        .right::after {
+            left: -16px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .dark-mode .timeline-content {
+            background-color: #1e293b;
+            color: #f8fafc;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .accessibility-bar {
+            background-color: var(--dark);
+            color: white;
+            padding: 0.5rem 0;
+        }
+        
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem;
+            z-index: 100;
+        }
+        
+        .skip-link:focus {
+            left: 0;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
 </head>
-<body>
-    <!-- Barra de Acessibilidade -->
+<body class="bg-gray-50 text-gray-800">
+    <!-- Skip to content link for screen readers -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    
+    <!-- Accessibility Bar -->
     <div class="accessibility-bar">
-        <div class="container d-flex justify-content-end">
-            <button id="darkModeToggle" class="btn btn-sm btn-outline-light me-2">
-                <i class="bi bi-moon-fill"></i> Modo Escuro
+        <div class="container mx-auto px-4 flex justify-end space-x-2">
+            <button id="darkModeToggle" class="px-3 py-1 text-sm rounded-md bg-gray-700 text-white hover:bg-gray-600 transition flex items-center gap-1">
+                <i class="fas fa-moon"></i> Modo Escuro
             </button>
-            <button id="increaseFontToggle" class="btn btn-sm btn-outline-light">
-                <i class="bi bi-type-larger"></i> Aumentar Fonte
+            <button id="increaseFontToggle" class="px-3 py-1 text-sm rounded-md bg-gray-700 text-white hover:bg-gray-600 transition flex items-center gap-1">
+                <i class="fas fa-text-height"></i> Aumentar Fonte
+            </button>
+            <button id="highContrastToggle" class="px-3 py-1 text-sm rounded-md bg-gray-700 text-white hover:bg-gray-600 transition flex items-center gap-1">
+                <i class="fas fa-adjust"></i> Alto Contraste
             </button>
         </div>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-                <span style="color: var(--primary-color);">Help</span>AI
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#sobre">Sobre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#nossa-jornada">Nossa Jornada</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#funcionalidades">Funcionalidades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tecnologias">Tecnologias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#impacto">Impacto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contato">Contato</a>
-                    </li>
-                </ul>
-                <!-- Ícones de acessibilidade -->
-                <div class="d-flex align-items-center ms-3">
-                    <button id="darkModeToggle" class="btn btn-sm btn-outline-light me-2">
-                        <i class="bi bi-moon-fill fs-5"></i>
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50 dark:bg-gray-800 transition">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="flex items-center">
+                    <span class="text-2xl font-bold text-primary-600 dark:text-primary-400">
+                        <span class="text-indigo-600 dark:text-indigo-400">Help</span>AI
+                    </span>
+                </a>
+                
+                <!-- Mobile menu button -->
+                <div class="flex md:hidden items-center space-x-2">
+                    <button id="mobileMenuButton" class="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
                     </button>
-                    <button id="increaseFontToggle" class="btn btn-sm btn-outline-light">
-                        <i class="bi bi-type fs-5"></i>
+                    <button id="darkModeToggleMobile" class="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 focus:outline-none">
+                        <i class="fas fa-moon text-xl"></i>
                     </button>
                 </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Home</a>
+                        <a href="#sobre" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Sobre</a>
+                        <a href="#jornada" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Jornada</a>
+                        <a href="#funcionalidades" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Funcionalidades</a>
+                        <a href="#tecnologias" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Tecnologias</a>
+                        <a href="#contato" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Contato</a>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2 ml-4">
+                        <button id="darkModeToggleDesktop" class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 rounded-full focus:outline-none">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button id="increaseFontToggleDesktop" class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 rounded-full focus:outline-none">
+                            <i class="fas fa-text-height"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-800 pb-4 px-4 transition">
+            <div class="flex flex-col space-y-2">
+                <a href="#" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Home</a>
+                <a href="#sobre" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Sobre</a>
+                <a href="#jornada" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Jornada</a>
+                <a href="#funcionalidades" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Funcionalidades</a>
+                <a href="#tecnologias" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Tecnologias</a>
+                <a href="#contato" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Contato</a>
             </div>
         </div>
     </nav>
-
-    <!-- Seção Hero -->
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="display-4 fw-bold mb-4">Help AI</h1>
-            <h2 class="h3 mb-4">Inteligência Artificial Acessível para Pessoas com Deficiência Auditiva</h2>
-            <p class="lead mb-5">Transformando a experiência digital através da inclusão e acessibilidade</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="#demonstracao" class="btn btn-light btn-lg">Demonstração</a>
-                <a href="#sobre" class="btn btn-outline-light btn-lg">Saiba Mais</a>
+    
+    <!-- Hero Section -->
+    <section id="main-content" class="hero-gradient text-white py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Help AI</h1>
+                <h2 class="text-xl md:text-2xl font-semibold mb-6">Inteligência Artificial Acessível para Pessoas com Deficiência Auditiva</h2>
+                <p class="text-lg md:text-xl mb-8">Transformando a experiência digital através da inclusão e acessibilidade</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#demonstracao" class="px-6 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition shadow-md">Demonstração</a>
+                    <a href="#sobre" class="px-6 py-3 border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-indigo-600 transition">Saiba Mais</a>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Sobre o Projeto -->
-    <section id="sobre" class="section bg-light">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="https://github.com/paulofreitas-py/Help-ai-site/blob/main/img/logo.png?raw=true" alt="Ilustração representando acessibilidade digital" class="img-fluid rounded shadow">
+    
+    <!-- About Section -->
+    <section id="sobre" class="py-16 bg-gray-50 dark:bg-gray-900 transition">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="https://github.com/paulofreitas-py/Help-ai-site/blob/main/img/logo.png?raw=true" alt="Ilustração representando acessibilidade digital" class="rounded-xl shadow-lg w-full">
                 </div>
-                <div class="col-lg-6">
-                    <h2 class="h1 mb-4">Por que criamos o Help AI?</h2>
-                    <p class="lead">Acreditamos que o acesso à informação é um direito de todos. O Help AI nasce com o propósito de aproximar pessoas com deficiência auditiva do universo digital.</p>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 dark:text-white">Por que criamos o Help AI?</h2>
+                    <p class="text-lg mb-6 dark:text-gray-300">Acreditamos que o acesso à informação é um direito de todos. O Help AI nasce com o propósito de aproximar pessoas com deficiência auditiva do universo digital.</p>
                     
-                    <div class="mt-4">
-                        <h3 class="h5 text-danger mb-3">A realidade da acessibilidade digital no Brasil:</h3>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="bi bi-exclamation-triangle-fill text-danger me-2"></i> <strong>Menos de 3%</strong> da internet no Brasil é acessível (Valor Econômico, 2024)</li>
-                            <li class="mb-2"><i class="bi bi-exclamation-triangle-fill text-danger me-2"></i> <strong>99,54%</strong> dos sites analisados apresentam falhas de acessibilidade (HandTalk, 2024)</li>
+                    <div class="bg-red-50 dark:bg-gray-800 p-4 rounded-lg mb-6">
+                        <h3 class="text-lg font-semibold text-red-600 dark:text-red-400 mb-3">A realidade da acessibilidade digital no Brasil:</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-2"></i>
+                                <span class="dark:text-gray-300"><strong>Menos de 3%</strong> da internet no Brasil é acessível (Valor Econômico, 2024)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-2"></i>
+                                <span class="dark:text-gray-300"><strong>99,54%</strong> dos sites analisados apresentam falhas de acessibilidade (HandTalk, 2024)</span>
+                            </li>
                         </ul>
                     </div>
                     
-                    <p class="mt-4">O Help AI surge como resposta a essa realidade, com o objetivo de eliminar barreiras digitais e promover uma experiência mais inclusiva e compreensível.</p>
+                    <p class="text-lg dark:text-gray-300">O Help AI surge como resposta a essa realidade, com o objetivo de eliminar barreiras digitais e promover uma experiência mais inclusiva e compreensível.</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Nossa Jornada - NOVA SEÇÃO -->
-    <section id="nossa-jornada" class="section">
-        <div class="container">
-            <h2 class="text-center mb-5">Nossa Jornada de Inclusão Digital</h2>
+    
+    <!-- Journey Section -->
+    <section id="jornada" class="py-16 bg-white dark:bg-gray-800 transition">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">Nossa Jornada de Inclusão Digital</h2>
+            
             <div class="timeline">
+                <!-- 2023 -->
                 <div class="timeline-container left">
-                    <div class="timeline-content">
-                        <h3 class="h4">2023</h3>
-                        <h4 class="h5 mb-3">Nascimento do Help All</h4>
-                        <p>Iniciamos nossa jornada com o Help All, nosso primeiro projeto voltado para a acessibilidade de deficientes auditivos. Uma plataforma pioneira de ensino e tradução de Libras.</p>
+                    <div class="timeline-content dark:bg-gray-700 transition">
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">2023</h3>
+                        <h4 class="text-lg font-medium mb-3 text-indigo-600 dark:text-indigo-400">Nascimento do Help All</h4>
+                        <p class="dark:text-gray-300">Iniciamos nossa jornada com o Help All, nosso primeiro projeto voltado para a acessibilidade de deficientes auditivos. Uma plataforma pioneira de ensino e tradução de Libras.</p>
                     </div>
                 </div>
+                
+                <!-- 2024 -->
                 <div class="timeline-container right">
-                    <div class="timeline-content">
-                        <h3 class="h4">2024</h3>
-                        <h4 class="h5 mb-3">Evolução e Aprendizado</h4>
-                        <p>Aprendemos com os usuários, coletamos feedback e identificamos oportunidades de melhoria. Percebemos o potencial transformador da IA para ampliar o impacto da solução.</p>
+                    <div class="timeline-content dark:bg-gray-700 transition">
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">2024</h3>
+                        <h4 class="text-lg font-medium mb-3 text-indigo-600 dark:text-indigo-400">Evolução e Aprendizado</h4>
+                        <p class="dark:text-gray-300">Aprendemos com os usuários, coletamos feedback e identificamos oportunidades de melhoria. Percebemos o potencial transformador da IA para ampliar o impacto da solução.</p>
                     </div>
                 </div>
+                
+                <!-- 2025 -->
                 <div class="timeline-container left">
-                    <div class="timeline-content">
-                        <h3 class="h4">2025</h3>
-                        <h4 class="h5 mb-3">Nasce o Help AI</h4>
-                        <p>Evoluímos para o Help AI, incorporando inteligência artificial e recursos avançados para criar uma experiência ainda mais completa e acessível para todos.</p>
+                    <div class="timeline-content dark:bg-gray-700 transition">
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">2025</h3>
+                        <h4 class="text-lg font-medium mb-3 text-indigo-600 dark:text-indigo-400">Nasce o Help AI</h4>
+                        <p class="dark:text-gray-300">Evoluímos para o Help AI, incorporando inteligência artificial e recursos avançados para criar uma experiência ainda mais completa e acessível para todos.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Demonstração -->
-    <section id="demonstracao" class="section bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">Experimente o Help AI</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div id="translator-demo">
-                        <div class="mb-3">
-                            <label for="inputText" class="form-label">Digite seu texto:</label>
-                            <textarea class="form-control" id="inputText" rows="3" placeholder="Digite aqui para traduzir para Libras..."></textarea>
-                        </div>
-                        <div class="d-grid">
-                            <button class="btn btn-primary" type="button">Traduzir para Libras</button>
-                        </div>
-                        <div class="video-container mt-4">
-                            <p>Aqui será exibida a tradução em Libras</p>
-                        </div>
+    
+    <!-- Demo Section -->
+    <section id="demonstracao" class="py-16 bg-gray-50 dark:bg-gray-900 transition">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">Experimente o Help AI</h2>
+            
+            <div class="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-6 transition">
+                <div class="mb-6">
+                    <label for="inputText" class="block text-lg font-medium mb-2 dark:text-gray-300">Digite seu texto:</label>
+                    <textarea id="inputText" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Digite aqui para traduzir para Libras..."></textarea>
+                </div>
+                
+                <button id="translateButton" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                    <i class="fas fa-language"></i> Traduzir para Libras
+                </button>
+                
+                <div id="translationResult" class="mt-8 bg-gray-100 dark:bg-gray-700 rounded-lg p-6 text-center transition">
+                    <p class="text-gray-500 dark:text-gray-400">Aqui será exibida a tradução em Libras</p>
+                </div>
+                
+                <p class="text-sm text-gray-500 dark:text-gray-400 text-center mt-4">Esta é uma demonstração simulada. O tradutor completo utiliza tecnologia VLibras.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="funcionalidades" class="py-16 bg-white dark:bg-gray-800 transition">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">Funcionalidades do Help AI</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white dark:bg-gray-700 rounded-xl shadow-md p-6 transition hover:shadow-lg">
+                    <div class="text-indigo-600 dark:text-indigo-400 mb-4">
+                        <i class="fas fa-language text-4xl"></i>
                     </div>
-                    <div class="text-center mt-3">
-                        <small class="text-muted">Esta é uma demonstração simulada. O tradutor completo utiliza tecnologia VLibras.</small>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">Tradução para Libras</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Conversão instantânea de texto para a Língua Brasileira de Sinais.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white dark:bg-gray-700 rounded-xl shadow-md p-6 transition hover:shadow-lg">
+                    <div class="text-indigo-600 dark:text-indigo-400 mb-4">
+                        <i class="fas fa-moon text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">Modo Escuro</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Interface adaptável para pessoas com sensibilidade à luz.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white dark:bg-gray-700 rounded-xl shadow-md p-6 transition hover:shadow-lg">
+                    <div class="text-indigo-600 dark:text-indigo-400 mb-4">
+                        <i class="fas fa-mobile-alt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">Design Responsivo</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Adaptação perfeita para desktop, tablets e smartphones.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-white dark:bg-gray-700 rounded-xl shadow-md p-6 transition hover:shadow-lg">
+                    <div class="text-indigo-600 dark:text-indigo-400 mb-4">
+                        <i class="fas fa-video text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">Vídeos em Libras</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Animações para termos reconhecidos pela plataforma.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Target Audience -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-900 transition">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">Para quem é o Help AI?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Audience 1 -->
+                <div class="flex items-start">
+                    <div class="bg-indigo-100 dark:bg-indigo-900 p-3 rounded-full mr-4">
+                        <i class="fas fa-users text-indigo-600 dark:text-indigo-300 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">Pessoas com deficiência auditiva</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Nosso principal público, para quem desenvolvemos uma interface específica que valoriza a comunicação visual.</p>
+                    </div>
+                </div>
+                
+                <!-- Audience 2 -->
+                <div class="flex items-start">
+                    <div class="bg-indigo-100 dark:bg-indigo-900 p-3 rounded-full mr-4">
+                        <i class="fas fa-chalkboard-teacher text-indigo-600 dark:text-indigo-300 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">Educadores e intérpretes de Libras</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Profissionais que podem utilizar o Help AI como ferramenta de apoio no ensino e na interpretação.</p>
+                    </div>
+                </div>
+                
+                <!-- Audience 3 -->
+                <div class="flex items-start">
+                    <div class="bg-indigo-100 dark:bg-indigo-900 p-3 rounded-full mr-4">
+                        <i class="fas fa-school text-indigo-600 dark:text-indigo-300 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">ONGs e instituições de ensino</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Organizações que buscam implementar soluções de acessibilidade em seus canais de comunicação.</p>
+                    </div>
+                </div>
+                
+                <!-- Audience 4 -->
+                <div class="flex items-start">
+                    <div class="bg-indigo-100 dark:bg-indigo-900 p-3 rounded-full mr-4">
+                        <i class="fas fa-code text-indigo-600 dark:text-indigo-300 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">Desenvolvedores e pesquisadores</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Profissionais de tecnologia interessados em contribuir com o ecossistema de acessibilidade digital.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Funcionalidades -->
-    <section id="funcionalidades" class="section">
-        <div class="container">
-            <h2 class="text-center mb-5">Funcionalidades do Help AI</h2>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-translate feature-icon"></i>
-                            <h3 class="h5 card-title">Tradução para Libras</h3>
-                            <p class="card-text">Conversão instantânea de texto para a Língua Brasileira de Sinais.</p>
-                        </div>
+    
+    <!-- Technologies Section -->
+    <section id="tecnologias" class="py-16 bg-white dark:bg-gray-800 transition">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">Como construímos o Help AI?</h2>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+                <!-- HTML5 -->
+                <div class="text-center">
+                    <div class="bg-red-100 dark:bg-gray-700 p-4 rounded-full inline-block mb-3">
+                        <i class="fas fa-code text-red-600 dark:text-red-400 text-3xl"></i>
                     </div>
+                    <h3 class="font-medium dark:text-white">HTML5</h3>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-moon-stars feature-icon"></i>
-                            <h3 class="h5 card-title">Modo Escuro</h3>
-                            <p class="card-text">Interface adaptável para pessoas com sensibilidade à luz.</p>
-                        </div>
+                
+                <!-- CSS3 -->
+                <div class="text-center">
+                    <div class="bg-blue-100 dark:bg-gray-700 p-4 rounded-full inline-block mb-3">
+                        <i class="fas fa-palette text-blue-600 dark:text-blue-400 text-3xl"></i>
                     </div>
+                    <h3 class="font-medium dark:text-white">CSS3</h3>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-display feature-icon"></i>
-                            <h3 class="h5 card-title">Design Responsivo</h3>
-                            <p class="card-text">Adaptação perfeita para desktop, tablets e smartphones.</p>
-                        </div>
+                
+                <!-- JavaScript -->
+                <div class="text-center">
+                    <div class="bg-yellow-100 dark:bg-gray-700 p-4 rounded-full inline-block mb-3">
+                        <i class="fas fa-code text-yellow-600 dark:text-yellow-400 text-3xl"></i>
                     </div>
+                    <h3 class="font-medium dark:text-white">JavaScript</h3>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-camera-video feature-icon"></i>
-                            <h3 class="h5 card-title">Vídeos em Libras</h3>
-                            <p class="card-text">Animações para termos reconhecidos pela plataforma.</p>
-                        </div>
+                
+                <!-- Tailwind CSS -->
+                <div class="text-center">
+                    <div class="bg-indigo-100 dark:bg-gray-700 p-4 rounded-full inline-block mb-3">
+                        <i class="fas fa-wind text-indigo-600 dark:text-indigo-400 text-3xl"></i>
                     </div>
+                    <h3 class="font-medium dark:text-white">Tailwind CSS</h3>
+                </div>
+                
+                <!-- VLibras -->
+                <div class="text-center">
+                    <div class="bg-green-100 dark:bg-gray-700 p-4 rounded-full inline-block mb-3">
+                        <i class="fas fa-hands text-green-600 dark:text-green-400 text-3xl"></i>
+                    </div>
+                    <h3 class="font-medium dark:text-white">VLibras API</h3>
+                </div>
+                
+                <!-- AI -->
+                <div class="text-center">
+                    <div class="bg-purple-100 dark:bg-gray-700 p-4 rounded-full inline-block mb-3">
+                        <i class="fas fa-brain text-purple-600 dark:text-purple-400 text-3xl"></i>
+                    </div>
+                    <h3 class="font-medium dark:text-white">IA (futuro)</h3>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Público-Alvo -->
-    <section class="section bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">Para quem é o Help AI?</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="d-flex align-items-start">
-                        <div class="me-3">
-                            <i class="bi bi-people-fill text-primary fs-1"></i>
-                        </div>
-                        <div>
-                            <h3 class="h5">Pessoas com deficiência auditiva</h3>
-                            <p>Nosso principal público, para quem desenvolvemos uma interface específica que valoriza a comunicação visual.</p>
-                        </div>
-                    </div>
+    
+    <!-- Impact Section -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-900 transition">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Representação do impacto da acessibilidade digital" class="rounded-xl shadow-lg w-full">
                 </div>
-                <div class="col-md-6">
-                    <div class="d-flex align-items-start">
-                        <div class="me-3">
-                            <i class="bi bi-person-workspace text-primary fs-1"></i>
-                        </div>
-                        <div>
-                            <h3 class="h5">Educadores e intérpretes de Libras</h3>
-                            <p>Profissionais que podem utilizar o Help AI como ferramenta de apoio no ensino e na interpretação.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="d-flex align-items-start">
-                        <div class="me-3">
-                            <i class="bi bi-building text-primary fs-1"></i>
-                        </div>
-                        <div>
-                            <h3 class="h5">ONGs e instituições de ensino</h3>
-                            <p>Organizações que buscam implementar soluções de acessibilidade em seus canais de comunicação.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="d-flex align-items-start">
-                        <div class="me-3">
-                            <i class="bi bi-code-slash text-primary fs-1"></i>
-                        </div>
-                        <div>
-                            <h3 class="h5">Desenvolvedores e pesquisadores</h3>
-                            <p>Profissionais de tecnologia interessados em contribuir com o ecossistema de acessibilidade digital.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
- <!-- Tecnologias -->
-<section id="tecnologias" class="section">
-    <div class="container">
-        <h2 class="text-center mb-5">Como construímos o Help AI?</h2>
-        <div class="row justify-content-center text-center g-4">
-            
-            <!-- HTML5 -->
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="p-3">
-                    <i class="bi bi-code-slash text-danger fs-1"></i>
-                    <h3 class="h6 mt-2">HTML5</h3>
-                </div>
-            </div>
-            
-            <!-- CSS3 -->
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="p-3">
-                    <i class="bi bi-palette text-primary fs-1"></i>
-                    <h3 class="h6 mt-2">CSS3</h3>
-                </div>
-            </div>
-            
-            <!-- JavaScript -->
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="p-3">
-                    <i class="bi bi-braces text-warning fs-1"></i>
-                    <h3 class="h6 mt-2">JavaScript</h3>
-                </div>
-            </div>
-            
-            <!-- Bootstrap 5 -->
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="p-3">
-                    <i class="bi bi-bootstrap-fill text-purple fs-1"></i>
-                    <h3 class="h6 mt-2">Bootstrap 5</h3>
-                </div>
-            </div>
-            
-            <!-- VLibras -->
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="p-3">
-                    <i class="bi bi-translate text-success fs-1"></i>
-                    <h3 class="h6 mt-2">VLibras API</h3>
-                </div>
-            </div>
-            
-            <!-- Inteligência Artificial -->
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="p-3">
-                    <i class="bi bi-cpu text-info fs-1"></i>
-                    <h3 class="h6 mt-2">IA (futuro)</h3>
-                </div>
-            </div>
-            
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impacto -->
-    <section id="impacto" class="section bg-light">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
-                    <img src="/api/placeholder/600/400" alt="Representação do impacto da acessibilidade digital" class="img-fluid rounded shadow-lg">
-                </div>
-                <div class="col-lg-6 order-lg-1">
-                    <h2 class="h1 mb-4">O que queremos transformar</h2>
-                    <p class="lead mb-4">O Help AI busca criar um impacto duradouro na sociedade, promovendo a inclusão digital e contribuindo diretamente para a redução das desigualdades.</p>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 dark:text-white">O que queremos transformar</h2>
+                    <p class="text-lg mb-6 dark:text-gray-300">O Help AI busca criar um impacto duradouro na sociedade, promovendo a inclusão digital e contribuindo diretamente para a redução das desigualdades.</p>
                     
-                    <div class="d-flex align-items-start mb-3">
-                        <i class="bi bi-check-circle-fill text-success fs-4 me-2 mt-1"></i>
-                        <p>Redução da exclusão digital entre deficientes auditivos</p>
-                    </div>
-                    <div class="d-flex align-items-start mb-3">
-                        <i class="bi bi-check-circle-fill text-success fs-4 me-2 mt-1"></i>
-                        <p>Fortalecimento de práticas inclusivas no desenvolvimento web</p>
-                    </div>
-                    <div class="d-flex align-items-start mb-3">
-                        <i class="bi bi-check-circle-fill text-success fs-4 me-2 mt-1"></i>
-                        <p>Inspiração para outros projetos sociais baseados em IA</p>
-                    </div>
-                    <div class="d-flex align-items-start">
-                        <i class="bi bi-check-circle-fill text-success fs-4 me-2 mt-1"></i>
-                        <p>Contribuição direta para o cumprimento da ODS 10 – Redução das Desigualdades da ONU</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Próximos Passos -->
-    <section class="section">
-        <div class="container">
-            <h2 class="text-center mb-5">O que vem por aí?</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="card border-0 shadow">
-                        <div class="card-body p-4">
-                            <div class="row">
-                                <div class="col-md-6 mb-4 mb-md-0">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="bg-primary text-white rounded-circle p-2 me-3">
-                                            <i class="bi bi-mic-fill"></i>
-                                        </div>
-                                        <h3 class="h5 mb-0">Reconhecimento de voz</h3>
-                                    </div>
-                                    <p>Implementação de IA para conversão de fala em Libras, permitindo comunicação bidirecional.</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="bg-primary text-white rounded-circle p-2 me-3">
-                                            <i class="bi bi-mic-fill"></i>
-                                        </div>
-                                        <h3 class="h5 mb-0">Reconhecimento de voz</h3>
-                                    </div>
-                                    <p>Implementação de IA para conversão de fala em Libras, permitindo comunicação bidirecional.</p>
-                                </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <p class="dark:text-gray-300">Redução da exclusão digital entre deficientes auditivos</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <p class="dark:text-gray-300">Fortalecimento de práticas inclusivas no desenvolvimento web</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <p class="dark:text-gray-300">Inspiração para outros projetos sociais baseados em IA</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <p class="dark:text-gray-300">Contribuição direta para o cumprimento da ODS 10 – Redução das Desigualdades da ONU</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Contato -->
-    <section id="contato" class="section bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">Entre em Contato</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="name" placeholder="Seu nome">
+    
+    <!-- Next Steps -->
+    <section class="py-16 bg-white dark:bg-gray-800 transition">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">O que vem por aí?</h2>
+            
+            <div class="max-w-4xl mx-auto bg-indigo-50 dark:bg-gray-700 rounded-xl shadow-md overflow-hidden transition">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+                    <!-- Next Step 1 -->
+                    <div class="flex items-start">
+                        <div class="bg-indigo-600 text-white p-3 rounded-full mr-4">
+                            <i class="fas fa-microphone text-xl"></i>
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Seu email">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 dark:text-white">Reconhecimento de voz</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Implementação de IA para conversão de fala em Libras, permitindo comunicação bidirecional.</p>
                         </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Mensagem</label>
-                            <textarea class="form-control" id="message" rows="4" placeholder="Sua mensagem"></textarea>
+                    </div>
+                    
+                    <!-- Next Step 2 -->
+                    <div class="flex items-start">
+                        <div class="bg-indigo-600 text-white p-3 rounded-full mr-4">
+                            <i class="fas fa-mobile-alt text-xl"></i>
                         </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 dark:text-white">Aplicativo móvel</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Versão mobile nativa para melhor experiência em smartphones e tablets.</p>
                         </div>
-                    </form>
+                    </div>
+                    
+                    <!-- Next Step 3 -->
+                    <div class="flex items-start">
+                        <div class="bg-indigo-600 text-white p-3 rounded-full mr-4">
+                            <i class="fas fa-globe text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 dark:text-white">Mais idiomas</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Suporte para outras línguas de sinais além da Libras.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Next Step 4 -->
+                    <div class="flex items-start">
+                        <div class="bg-indigo-600 text-white p-3 rounded-full mr-4">
+                            <i class="fas fa-robot text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 dark:text-white">Chatbot em Libras</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Assistente virtual que se comunica diretamente em língua de sinais.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Rodapé -->
-    <footer class="footer bg-dark text-white py-4">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2025 Help AI. Todos os direitos reservados.</p>
+    
+    <!-- Contact Section -->
+    <section id="contato" class="py-16 bg-gray-50 dark:bg-gray-900 transition">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">Entre em Contato</h2>
+            
+            <div class="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-8 transition">
+                <form>
+                    <div class="mb-6">
+                        <label for="name" class="block text-lg font-medium mb-2 dark:text-gray-300">Nome</label>
+                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Seu nome">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="email" class="block text-lg font-medium mb-2 dark:text-gray-300">Email</label>
+                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Seu email">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="message" class="block text-lg font-medium mb-2 dark:text-gray-300">Mensagem</label>
+                        <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Sua mensagem"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 dark:bg-gray-950 transition">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="flex items-center">
+                        <span class="text-2xl font-bold">
+                            <span class="text-indigo-400">Help</span>AI
+                        </span>
+                    </a>
+                    <p class="mt-2 text-gray-400">Inteligência Artificial Acessível</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Links</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                            <li><a href="#sobre" class="text-gray-400 hover:text-white transition">Sobre</a></li>
+                            <li><a href="#funcionalidades" class="text-gray-400 hover:text-white transition">Funcionalidades</a></li>
+                            <li><a href="#contato" class="text-gray-400 hover:text-white transition">Contato</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Redes Sociais</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Facebook">
+                                <i class="fab fa-facebook-f text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Twitter">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Instagram">
+                                <i class="fab fa-instagram text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-white transition" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Help AI. Todos os direitos reservados.</p>
+            </div>
         </div>
     </footer>
-
-    <!-- Script do VLibras -->
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-
-    <!-- Script do HandTalk -->
-    <script src="https://static.handtalk.me/plugin/latest/handtalk.min.js"></script>
-
-    <script src="scripts.js"></script> <!-- Conecte o arquivo JavaScript -->
+    
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-indigo-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-indigo-700">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Scripts -->
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeToggleDesktop = document.getElementById('darkModeToggleDesktop');
+        const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+        
+        if (darkModeToggle) darkModeToggle.addEventListener('click', toggleDarkMode);
+        if (darkModeToggleDesktop) darkModeToggleDesktop.addEventListener('click', toggleDarkMode);
+        if (darkModeToggleMobile) darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+        
+        // Increase Font Toggle
+        const increaseFontToggle = document.getElementById('increaseFontToggle');
+        const increaseFontToggleDesktop = document.getElementById('increaseFontToggleDesktop');
+        
+        function toggleFontSize() {
+            document.body.classList.toggle('large-text');
+            localStorage.setItem('largeText', document.body.classList.contains('large-text'));
+        }
+        
+        if (increaseFontToggle) increaseFontToggle.addEventListener('click', toggleFontSize);
+        if (increaseFontToggleDesktop) increaseFontToggleDesktop.addEventListener('click', toggleFontSize);
+        
+        // Check for saved font size preference
+        if (localStorage.getItem('largeText') === 'true') {
+            document.body.classList.add('large-text');
+        }
+        
+        // High Contrast Toggle
+        const highContrastToggle = document.getElementById('highContrastToggle');
+        
+        if (highContrastToggle) {
+            highContrastToggle.addEventListener('click', function() {
+                document.body.classList.toggle('high-contrast');
+                localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+            });
+        }
+        
+        // Check for saved high contrast preference
+        if (localStorage.getItem('highContrast') === 'true') {
+            document.body.classList.add('high-contrast');
+        }
+        
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Demo Translation
+        const translateButton = document.getElementById('translateButton');
+        const translationResult = document.getElementById('translationResult');
+        
+        if (translateButton && translationResult) {
+            translateButton.addEventListener('click', function() {
+                const inputText = document.getElementById('inputText').value;
+                
+                if (inputText.trim() === '') {
+                    translationResult.innerHTML = '<p class="text-gray-500 dark:text-gray-400">Por favor, digite algum texto para traduzir</p>';
+                    return;
+                }
+                
+                // Simulate translation
+                translationResult.innerHTML = `
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-hands text-3xl text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <p class="font-medium dark:text-white">Tradução em Libras para:</p>
+                        <p class="text-lg font-semibold my-2 dark:text-white">"${inputText}"</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Esta é uma demonstração simulada</p>
+                    </div>
+                `;
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
