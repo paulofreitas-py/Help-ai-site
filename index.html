@@ -9,65 +9,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
-    <!-- Skip to content link for screen readers -->
-    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
-    
     <!-- Navigation -->
     <nav class="bg-white shadow-md sticky top-0 z-50 dark:bg-gray-800 transition">
         <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
                 <a href="#" class="flex items-center">
-                    <span class="text-2xl font-bold text-primary-600 dark:text-primary-400">
+                    <span class="text-3xl font-bold text-primary-600 dark:text-primary-400">
                         <span class="text-indigo-600 dark:text-indigo-400">Help</span>AI
                     </span>
                 </a>
-                
-                <!-- Mobile menu button -->
-                <div class="flex md:hidden items-center space-x-2">
-                    <button id="mobileMenuButton" class="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                    <button id="darkModeToggleMobile" class="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 focus:outline-none">
-                        <i class="fas fa-moon text-xl"></i>
-                    </button>
+                <!-- Navigation Links -->
+                <div class="flex items-center space-x-8">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#sobre" class="nav-link">Sobre</a>
+                    <a href="#jornada" class="nav-link">Jornada</a>
+                    <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
+                    <a href="#contato" class="nav-link">Contato</a>
                 </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <div class="hidden md:flex space-x-8">
-                        <a href="#" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Home</a>
-                        <a href="#sobre" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Sobre</a>
-                        <a href="#jornada" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Jornada</a>
-                        <a href="#funcionalidades" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Funcionalidades</a>
-                        <a href="#tecnologias" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Tecnologias</a>
-                        <a href="#contato" class="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Contato</a>
-                    </div>
-                    
-                    <div class="flex items-center space-x-2 ml-4">
-                        <button id="darkModeToggleDesktop" class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 rounded-full focus:outline-none">
-                            <i class="fas fa-moon"></i>
-                        </button>
-                        <button id="increaseFontToggleDesktop" class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 rounded-full focus:outline-none">
-                            <i class="fas fa-text-height"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-800 pb-4 px-4 transition">
-            <div class="flex flex-col space-y-2">
-                <a href="#" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Home</a>
-                <a href="#sobre" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Sobre</a>
-                <a href="#jornada" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Jornada</a>
-                <a href="#funcionalidades" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Funcionalidades</a>
-                <a href="#tecnologias" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Tecnologias</a>
-                <a href="#contato" class="block py-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium transition">Contato</a>
             </div>
         </div>
     </nav>
-    
+
     <!-- Hero Section -->
     <section id="main-content" class="hero-gradient text-white py-20 md:py-32">
         <div class="container mx-auto px-4">
@@ -82,7 +45,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- About Section -->
     <section id="sobre" class="py-16 bg-gray-50 dark:bg-gray-900 transition">
         <div class="container mx-auto px-4">
@@ -93,54 +56,38 @@
                 <div class="lg:w-1/2">
                     <h2 class="text-3xl font-bold mb-6 dark:text-white">Por que criamos o Help AI?</h2>
                     <p class="text-lg mb-6 dark:text-gray-300">Acreditamos que o acesso à informação é um direito de todos. O Help AI nasce com o propósito de aproximar pessoas com deficiência auditiva do universo digital.</p>
-                    
-                    <div class="bg-red-50 dark:bg-gray-800 p-4 rounded-lg mb-6">
-                        <h3 class="text-lg font-semibold text-red-600 dark:text-red-400 mb-3">A realidade da acessibilidade digital no Brasil:</h3>
-                        <ul class="space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-2"></i>
-                                <span class="dark:text-gray-300"><strong>Menos de 3%</strong> da internet no Brasil é acessível (Valor Econômico, 2024)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-2"></i>
-                                <span class="dark:text-gray-300"><strong>99,54%</strong> dos sites analisados apresentam falhas de acessibilidade (HandTalk, 2024)</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <p class="text-lg dark:text-gray-300">O Help AI surge como resposta a essa realidade, com o objetivo de eliminar barreiras digitais e promover uma experiência mais inclusiva e compreensível.</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Journey Section -->
+
+    <!-- Nossa Jornada -->
     <section id="jornada" class="py-16 bg-white dark:bg-gray-800 transition">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">Nossa Jornada de Inclusão Digital</h2>
-            
             <div class="timeline">
                 <!-- 2023 -->
-                <div class="timeline-container left">
-                    <div class="timeline-content dark:bg-gray-700 transition">
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
                         <h3 class="text-xl font-semibold mb-2 dark:text-white">2023</h3>
                         <h4 class="text-lg font-medium mb-3 text-indigo-600 dark:text-indigo-400">Nascimento do Help All</h4>
                         <p class="dark:text-gray-300">Iniciamos nossa jornada com o Help All, nosso primeiro projeto voltado para a acessibilidade de deficientes auditivos. Uma plataforma pioneira de ensino e tradução de Libras.</p>
                     </div>
                 </div>
-                
                 <!-- 2024 -->
-                <div class="timeline-container right">
-                    <div class="timeline-content dark:bg-gray-700 transition">
-                        <h3 class="text-xl font-semibold mb-2 dark:text-white">2024</h4>
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">2024</h3>
                         <h4 class="text-lg font-medium mb-3 text-indigo-600 dark:text-indigo-400">Evolução e Aprendizado</h4>
                         <p class="dark:text-gray-300">Aprendemos com os usuários, coletamos feedback e identificamos oportunidades de melhoria. Percebemos o potencial transformador da IA para ampliar o impacto da solução.</p>
                     </div>
                 </div>
-                
                 <!-- 2025 -->
-                <div class="timeline-container left">
-                    <div class="timeline-content dark:bg-gray-700 transition">
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
                         <h3 class="text-xl font-semibold mb-2 dark:text-white">2025</h3>
                         <h4 class="text-lg font-medium mb-3 text-indigo-600 dark:text-indigo-400">Nasce o Help AI</h4>
                         <p class="dark:text-gray-300">Evoluímos para o Help AI, incorporando inteligência artificial e recursos avançados para criar uma experiência ainda mais completa e acessível para todos.</p>
@@ -459,33 +406,15 @@
                     <p class="mt-2 text-gray-400">Inteligência Artificial Acessível</p>
                 </div>
                 
-                <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0">
-                    <div>
-                        <h3 class="text-lg font-semibold mb-2">Links</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
-                            <li><a href="#sobre" class="text-gray-400 hover:text-white transition">Sobre</a></li>
-                            <li><a href="#funcionalidades" class="text-gray-400 hover:text-white transition">Funcionalidades</a></li>
-                            <li><a href="#contato" class="text-gray-400 hover:text-white transition">Contato</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-lg font-semibold mb-2">Redes Sociais</h3>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Facebook">
-                                <i class="fab fa-facebook-f text-xl"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Twitter">
-                                <i class="fab fa-twitter text-xl"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Instagram">
-                                <i class="fab fa-instagram text-xl"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition" aria-label="LinkedIn">
-                                <i class="fab fa-linkedin-in text-xl"></i>
-                            </a>
-                        </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Redes Sociais</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition" aria-label="Instagram">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition" aria-label="GitHub">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
                     </div>
                 </div>
             </div>
