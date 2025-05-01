@@ -1,21 +1,20 @@
-// Seleciona os botões
+// Dark Mode Toggle
 const darkModeToggle = document.getElementById('darkModeToggle');
-const increaseFontToggle = document.getElementById('increaseFontToggle');
+const darkModeToggleDesktop = document.getElementById('darkModeToggleDesktop');
+const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
 
-// Alterna o modo escuro
-darkModeToggle.addEventListener('click', () => {
+function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
-});
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+}
 
-// Alterna o aumento de fonte
-increaseFontToggle.addEventListener('click', () => {
-    document.body.classList.toggle('large-font');
-});
+if (darkModeToggle) darkModeToggle.addEventListener('click', toggleDarkMode);
+if (darkModeToggleDesktop) darkModeToggleDesktop.addEventListener('click', toggleDarkMode);
+if (darkModeToggleMobile) darkModeToggleMobile.addEventListener('click', toggleDarkMode);
 
-// Inicializa o VLibras
-new window.VLibras.Widget('https://vlibras.gov.br/app');
+// Check for saved dark mode preference
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+}
 
-// Inicializa o HandTalk
-const ht = new window.HT({
-    token: 'SEU_TOKEN_AQUI' // Substitua por seu token do HandTalk
-});
+// Adicione o restante dos scripts aqui
